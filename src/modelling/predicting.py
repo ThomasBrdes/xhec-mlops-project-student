@@ -1,7 +1,10 @@
 """Module for making predictions using trained machine learning models."""
 
+from prefect import task
 
-def make_predictions(model, x_test):
+
+@task(name="make_predictions_task")
+def make_predictions_task(model, x_test):
     """Make predictions using a trained model on test data.
 
     Takes a trained model and test features to generate predictions

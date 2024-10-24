@@ -150,49 +150,59 @@ pip-compile requirements.in
 
 # Instructions
 
-## Environment Setup
+Run the whole modelling.ipynb Notebook.
 
-This project can be set up using either Conda or Poetry, depending on your preference. Follow the instructions below to create the development environment and install necessary dependencies.
+    ```bash
+    mlflow ui
+    ```
+You can see here the different models in our experiment
+![image3](images/image3.png)
 
-### Using Conda
-
-   You can create the environment from the `environment.yml` file:
-   ```bash
-   conda env create -f environment.yml
-   conda activate mlops_hw
-   ```
-
-   Then, you can download the dependencies from the `requirements.txt` file:
-   ```bash
-   pip install -r requirements.in
-   pip install -r requirements-dev.in
-   ```
-
-   If you want to work on your repo and use pre-commit:
-   ```bash
-   pip install pre-commit
-   pre-commit install
-   ```
-
-   In order to check manually if the pre-commit is respected:
-   ```bash
-   pre-commit run --all-files
-   ```
+and here is the best model of our last run (LR)
+![image4](images/image4.png)
 
 
-### Using Poetry
+```markdown
+Illustrate the deployment process for retraining the model using Prefect.
 
-  You can create the environment from the `environment.yml` file:
-   ```bash
-   poetry install
-   ```
+```bash
+prefect config set PREFECT_API_URL='http://localhost:4200/api'
+```
 
-   If you want to work on your repo and use pre-commit, Poetry will automatically install the pre-commit package. Now, install the hooks:
-   ```bash
-   pre-commit install
-   ```
+### Steps to Follow
 
-   In order to check manually if the pre-commit is respected:
-   ```bash
-   poetry run pre-commit run --all-files
-   ```
+1. **Run the Correct Command:** Use the command above to set the `PREFECT_API_URL`.
+
+2. **Verify the Configuration:** After setting it, verify that the change took effect by running:
+
+    ```bash
+    prefect config view
+    ```
+
+   It should display:
+
+    ```plaintext
+    PREFECT_API_URL='http://localhost:4200/api'
+    ```
+
+3. **Start the Prefect Server:** If you haven’t already, start the Prefect server in a separate terminal:
+
+    ```bash
+    prefect server start
+    ```
+
+4. **Run Your Deployment Script:** Now that you’ve set the API URL correctly, run your `deployment.py` script:
+
+    ```bash
+    python \src\modelling\deployment.py
+    ```
+```
+
+
+When you navigate to http://0.0.0.0:4200/deployments, click on 'train-model' to view the scheduled retraining of the model, as shown below:
+
+![image1](images/image1.png)
+
+
+"Click on 'Quick Run' to train the model immediately, then scroll to the bottom of the page and select the most recent run:"
+![image2](images/image2.png)
