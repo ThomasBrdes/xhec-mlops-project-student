@@ -2,8 +2,11 @@
 
 import pickle
 
+from prefect import task
 
-def save_model(model, model_name):
+
+@task(name="save_model_task")
+def save_model_task(model, model_name):
     """Save a trained model to a file using pickle.
 
     Args:

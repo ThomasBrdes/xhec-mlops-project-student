@@ -1,12 +1,14 @@
 """Module for preprocessing the rings prediction dataset."""
 
 import pandas as pd
+from prefect import task
 from sklearn.feature_selection import SelectKBest
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 
-def preprocess_data(df):
+@task(name="preprocess_data_task")
+def preprocess_data_task(df):
     """Preprocess the input DataFrame for model training.
 
     Performs one-hot encoding, outlier removal, feature scaling, and feature
@@ -23,7 +25,6 @@ def preprocess_data(df):
     data = pd.get_dummies(df)
 
     # Outlier removal
-    # Repeat your outlier removal steps here as functions for clarity.
     outlier_conditions(data)
 
     # Define features and target
