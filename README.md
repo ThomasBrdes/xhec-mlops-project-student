@@ -25,6 +25,8 @@ You can download the dataset on the [Kaggle page](https://www.kaggle.com/dataset
 
 ## Table of Contents
 
+## Table of Contents
+
 - [xhec-mlops-project-student](#xhec-mlops-project-student)
   - [Table of Contents](#table-of-contents)
   - [Deliverables and Evaluation](#deliverables-and-evaluation)
@@ -34,9 +36,10 @@ You can download the dataset on the [Kaggle page](https://www.kaggle.com/dataset
     - [Pull requests in this project](#pull-requests-in-this-project)
     - [Tips to work on this project](#tips-to-work-on-this-project)
 - [Instructions](#instructions)
-  - [Environment Setup](#environment-setup)
-    - [Using Conda](#using-conda)
-    - [Using Poetry](#using-poetry)
+  - [Using Mlflow UI](#using-mlflow-ui)
+  - [Deploying with Prefect](#deploying-with-prefect)
+  - [Dockerization](#dockerization)
+
 
 ## Deliverables and notation
 
@@ -150,17 +153,24 @@ pip-compile requirements.in
 
 # Instructions
 
+### Using Mlflow UI
+
 Run the whole modelling.ipynb Notebook.
 
-    ```bash
-    mlflow ui
-    ```
-You can see here the different models in our experiment
+```bash
+mlflow ui
+```
+
+You can see here the different models in our experiment:
+
 ![image3](images/image3.png)
 
-and here is the best model of our last run (LR)
+and here is the best model of our last run (LR):
+
 ![image4](images/image4.png)
 
+
+### Deploying with Prefect
 
 ```markdown
 Illustrate the deployment process for retraining the model using Prefect.
@@ -170,7 +180,7 @@ Illustrate the deployment process for retraining the model using Prefect.
 prefect config set PREFECT_API_URL='http://localhost:4200/api'
 ```
 
-### Steps to Follow
+#### Steps to Follow
 
 1. **Run the Correct Command:** Use the command above to set the `PREFECT_API_URL`.
 
@@ -197,9 +207,8 @@ prefect config set PREFECT_API_URL='http://localhost:4200/api'
     ```bash
     python \src\modelling\deployment.py
     ```
-```
 
-
+#### Outputs
 When you navigate to http://0.0.0.0:4200/deployments, click on 'train-model' to view the scheduled retraining of the model, as shown below:
 
 ![image1](images/image1.png)
@@ -208,13 +217,15 @@ When you navigate to http://0.0.0.0:4200/deployments, click on 'train-model' to 
 "Click on 'Quick Run' to train the model immediately, then scroll to the bottom of the page and select the most recent run:"
 ![image2](images/image2.png)
 
+### Dockerization
 
+#### Cleaning of the requirement.in
 
-We used this command to clean the requirements.in
+We used this command to clean the requirements.in in the last pull request
     ```bash
     pipreqs . --savepath requirements.in
     ```
-
+#### Building & Running the Docker Image
 
 This builds a Docker image from the Dockerfile.app, tagging it as api-with-prefect.
 
