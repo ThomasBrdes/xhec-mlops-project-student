@@ -27,6 +27,11 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
 
+      - name: Auto-commit black formatting
+        run: |
+          git add .
+          git commit -m "Auto-apply black formatting [skip ci]" || echo "No changes to commit"
+          
       # Step to install pre-commit 
       - name: Install pre-commit hooks
         run: pre-commit install
