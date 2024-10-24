@@ -1,0 +1,47 @@
+###
+### A complete description of a Prefect Deployment for flow 'train_model_flow'
+###
+name: train_model_deployment
+description: |-
+  Train a model using the data and save the model (pickle).
+
+  This function loads the dataset, preprocesses it, trains multiple models,
+  selects the best performing one, and saves it to disk. Optionally makes
+  predictions using the trained model.
+version: b566a7527a7eace1eb5c774c2079fc40
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+work_pool_name: null
+tags: []
+parameters: {}
+schedule: null
+is_schedule_active: null
+infra_overrides: {}
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  block_type_slug: process
+  _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: train_model_flow
+manifest_path: null
+storage: null
+path: C:\Users\aubry\OneDrive\Documents\mlops_hec\homework\xhec-mlops-project-student\src\modelling
+entrypoint: main.py:main
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties: {}
+  required: null
+  definitions: null
+timestamp: '2024-10-24T16:08:49.203167+00:00'
+triggers: []
+enforce_parameter_schema: null

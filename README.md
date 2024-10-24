@@ -33,12 +33,16 @@ You can download the dataset on the [Kaggle page](https://www.kaggle.com/dataset
   - [Steps to reproduce to build the deliverable](#steps-to-reproduce-to-build-the-deliverable)
     - [Pull requests in this project](#pull-requests-in-this-project)
     - [Tips to work on this project](#tips-to-work-on-this-project)
+- [Instructions](#instructions)
+  - [Environment Setup](#environment-setup)
+    - [Using Conda](#using-conda)
+    - [Using Poetry](#using-poetry)
 
 ## Deliverables and notation
 
 ### Deliverables
 
-The deliverable of this project is a copy of this repository with the industrialization of the Abalone age prediction model. We expect to see: 
+The deliverable of this project is a copy of this repository with the industrialization of the Abalone age prediction model. We expect to see:
 
 1. a workflow to train a model using Prefect
 - The workflows to train the model and to make the inference (prediction of the age of abalone) are in separate modules and use Prefect `flow` and `task` objects
@@ -59,24 +63,24 @@ Each of your pull requests will be graded based on the following criteria:
   - use of docstrings and type hinting
 - **Formatting**
   - respect of clear code conventions
-  
+
   *P.S. you can use a linter and automatic code formatters to help you with that*
 
 - Proper **Functioning** of the code
   - the code must run without bugs
 
-Bseides the evaluation of the pull requests, we will also evaluate: 
+Bseides the evaluation of the pull requests, we will also evaluate:
 - **Reproducibility** and clarity of instructions to run the code (we will actually try to run your code)
-  - Having a clear README.md with 
+  - Having a clear README.md with
     - the context of the project
     - the name of the participants and their github users
     - the steps to recreate the Python environment
     - the instructions to run all parts of the code
-- Use of *Pull Requests* (see below) to coordinate your collaboration 
+- Use of *Pull Requests* (see below) to coordinate your collaboration
 
 ## Steps to reproduce to build the deliverable
 
-To help you with the structure and order of steps to perform in this project, we created different pull requests templates. 
+To help you with the structure and order of steps to perform in this project, we created different pull requests templates.
 Each branch in this repository corresponds to a future pull request and has an attached markdown file with the instructions to perform the tasks of the pull request.
 Each branch starts with a number.
 You can follow the order of the branches to build your project and collaborate.
@@ -102,11 +106,12 @@ You can follow the order of the branches to build your project and collaborate.
    > ```bash
    > git checkout branch_number_i
    > git pull origin master
-   > # At this point, you might have a VIM window opening, you can close it using the command ":wq" 
+   > # At this point, you might have a VIM window opening, you can close it using the command ":wq"
    > git push
    > ```
+    - Read and **follow** all the instructions in the the PR instructions file
     - Do as many commits as necessary on the branch_number_i to perform the task indicated in the corresponding markdown file
-    - Open a pull request from this branch to the main branch of your forked repository
+    - Open **A SINGLE** pull request from this branch to the main branch of your forked repository
     - Once done, merge the pull request in the main branch of your forked repository
 
 ### Pull requests in this project
@@ -141,3 +146,63 @@ This will guarantee that your code is formatted correctly and of good quality be
 ```bash
 pip-compile requirements.in
 ```
+
+
+# Instructions
+
+Run the whole modelling.ipynb Notebook.
+
+    ```bash
+    mlflow ui
+    ```
+You can see here the different models in our experiment
+![image3](images/image3.png)
+
+and here is the best model of our last run (LR)
+![image4](images/image4.png)
+
+
+```markdown
+Illustrate the deployment process for retraining the model using Prefect.
+
+```bash
+prefect config set PREFECT_API_URL='http://localhost:4200/api'
+```
+
+### Steps to Follow
+
+1. **Run the Correct Command:** Use the command above to set the `PREFECT_API_URL`.
+
+2. **Verify the Configuration:** After setting it, verify that the change took effect by running:
+
+    ```bash
+    prefect config view
+    ```
+
+   It should display:
+
+    ```plaintext
+    PREFECT_API_URL='http://localhost:4200/api'
+    ```
+
+3. **Start the Prefect Server:** If you haven’t already, start the Prefect server in a separate terminal:
+
+    ```bash
+    prefect server start
+    ```
+
+4. **Run Your Deployment Script:** Now that you’ve set the API URL correctly, run your `deployment.py` script:
+
+    ```bash
+    python \src\modelling\deployment.py
+    ```
+```
+
+
+When you navigate to http://0.0.0.0:4200/deployments, click on 'train-model' to view the scheduled retraining of the model, as shown below:
+
+![image1](images/image1.png)
+
+
+"Click on 'Quick Run' to train the model immediately, then scroll to the bottom of the page and select the most recent run:"
+![image2](images/image2.png)
