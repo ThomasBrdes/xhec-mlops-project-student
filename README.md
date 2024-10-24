@@ -4,10 +4,10 @@
 
 [![Python Version](https://img.shields.io/badge/python-3.9%20%7C%203.10-blue.svg)]()
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![Linting: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-informational?logo=pre-commit&logoColor=white)](https://github.com/artefactory/xhec-mlops-project-student/blob/main/.pre-commit-config.yaml)
-
 </div>
 
 This repository has for purpose to industrialize the [Abalone age prediction](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset) Kaggle contest.
@@ -25,125 +25,205 @@ You can download the dataset on the [Kaggle page](https://www.kaggle.com/dataset
 
 ## Table of Contents
 
-- [Project Requirements](#project-requirements)
-- [Setup Instructions](#setup-instructions)
-- [Running the Project](#running-the-project)
-- [Development Process](#development-process)
-- [Docker Deployment](#docker-deployment)
+- [xhec-mlops-project-student](#xhec-mlops-project-student)
+  - [Table of Contents](#table-of-contents)
+  - [Deliverables and Evaluation](#deliverables-and-evaluation)
+    - [Deliverables](#deliverables)
+    - [Evaluation](#evaluation)
+  - [Steps to reproduce to build the deliverable](#steps-to-reproduce-to-build-the-deliverable)
+    - [Pull requests in this project](#pull-requests-in-this-project)
+    - [Tips to work on this project](#tips-to-work-on-this-project)
+- [Instructions](#instructions)
+  - [Environment Setup](#environment-setup)
+    - [Using Conda](#using-conda)
+    - [Using Poetry](#using-poetry)
 
-## Project Requirements
+## Deliverables and notation
 
 ### Deliverables
 
-1. **Model Training Workflow using Prefect**
-   - Separate modules for training and inference with Prefect `flow` and `task` objects
-   - Reproducible model and encoder training process
+The deliverable of this project is a copy of this repository with the industrialization of the Abalone age prediction model. We expect to see:
 
-2. **Automated Retraining**
-   - Prefect deployment for regular model retraining
+1. a workflow to train a model using Prefect
+- The workflows to train the model and to make the inference (prediction of the age of abalone) are in separate modules and use Prefect `flow` and `task` objects
+- The code to get the trained model and encoder is in a separate module and must be reproducible (not necessarily in a docker container)
+2. a Prefect deployment to retrain the model regularly
+3. an API that runs on a local app and that allows users to make predictions on new data
+  - A working API which can be used to make predictions on new data
+    - The API can run on a docker container
+    - The API has validation on input data (use Pydantic)
 
-3. **Prediction API**
-   - Dockerized local application
-   - Input validation using Pydantic
-   - Predictions on new data
+### Evaluation
 
-### Evaluation Criteria
+Each of your pull requests will be graded based on the following criteria:
 
-- Code quality (structure, naming, docstrings, typing)
-- Code formatting standards
-- Functional implementation
-- Documentation and reproducibility
-- Pull Request usage
+- **Clarity** and quality of code
+  - good module structure
+  - naming conventions
+  - use of docstrings and type hinting
+- **Formatting**
+  - respect of clear code conventions
 
-## Setup Instructions
+  *P.S. you can use a linter and automatic code formatters to help you with that*
 
-### Using Conda
-```bash
-conda env create -f environment.yml
-conda activate your-env-name
-```
+- Proper **Functioning** of the code
+  - the code must run without bugs
 
-### Using Poetry
-```bash
-poetry install
-```
+Bseides the evaluation of the pull requests, we will also evaluate:
+- **Reproducibility** and clarity of instructions to run the code (we will actually try to run your code)
+  - Having a clear README.md with
+    - the context of the project
+    - the name of the participants and their github users
+    - the steps to recreate the Python environment
+    - the instructions to run all parts of the code
+- Use of *Pull Requests* (see below) to coordinate your collaboration
 
-### Pre-commit Setup
+## Steps to reproduce to build the deliverable
+
+To help you with the structure and order of steps to perform in this project, we created different pull requests templates.
+Each branch in this repository corresponds to a future pull request and has an attached markdown file with the instructions to perform the tasks of the pull request.
+Each branch starts with a number.
+You can follow the order of the branches to build your project and collaborate.
+
+> [!NOTE]
+> There are "TODO" in the code of the different branches. Each "TODO" corresponds to a task to perform to build the project.
+> [!IMPORTANT]
+> Remember to remove all code that is not used before the end of the project (including all TODO tags in the code).
+
+**Please follow these steps**:
+
+- If not done already, create a GitHub account
+- If not done already, create a [Kaggle account](https://www.kaggle.com/account/login?phase=startRegisterTab&returnUrl=%2F) (so you can download the dataset)
+- Fork this repository (one person per group)
+
+**WARNING**: make sure to **unselect** the option "Copy the `master` branch only", so you have all the branches in the forked repository.
+
+- Add the different members of your group as admin to your forked repository
+- Follow the order of the numbered branches and for each branch:
+  - Read the PR_i.md (where i is the number of the branch) file to understand the task to perform
+   > [!NOTE]
+   > Dont forget to integrate your work from past branches (except for when working on branch #1 obviously (!))
+   > ```bash
+   > git checkout branch_number_i
+   > git pull origin master
+   > # At this point, you might have a VIM window opening, you can close it using the command ":wq"
+   > git push
+   > ```
+    - Read and **follow** all the instructions in the the PR instructions file
+    - Do as many commits as necessary on the branch_number_i to perform the task indicated in the corresponding markdown file
+    - Open **A SINGLE** pull request from this branch to the main branch of your forked repository
+    - Once done, merge the pull request in the main branch of your forked repository
+
+### Pull requests in this project
+
+Github [Pull Requests](https://docs.github.com/articles/about-pull-requests) are a way to propose changes to a repository. They have for purpose to integrate the work of *feature branches* into the main branch of the repository, with a collaborative review process.
+
+**PR tips:**
+
+Make sure that you select your own repository when selecting the base repository:
+
+![PR Wrong](assets/PR_wrong.png)
+
+It should rather look like this:
+
+![PR Right](assets/PR_right.png)
+
+### Tips to work on this project
+
+- Use a virtual environment to install the dependencies of the project (conda or virtualenv for instance)
+
+- Once your virtual environment is activated, install pre-commit hooks to automatically format your code before each commit:
+
 ```bash
 pip install pre-commit
 pre-commit install
 ```
 
-### Dependencies
+This will guarantee that your code is formatted correctly and of good quality before each commit.
+
+- Use a `requirements.in` file to list the dependencies of your project. You can use the following command to generate a `requirements.txt` file from a `requirements.in` file:
+
 ```bash
 pip-compile requirements.in
-pipreqs . --savepath requirements.in
 ```
 
-## Running the Project
 
-### 1. Model Training
-Run the modelling.ipynb Notebook.
+# Instructions
 
-```bash
-mlflow ui
+Run the whole modelling.ipynb Notebook.
+
+    ```bash
+    mlflow ui
+    ```
+You can see here the different models in our experiment
+![image3](images/image3.png)
+
+and here is the best model of our last run (LR)
+![image4](images/image4.png)
+
+
+```markdown
+Illustrate the deployment process for retraining the model using Prefect.
 ```
-
-### 2. Prefect Configuration
 
 ```bash
 prefect config set PREFECT_API_URL='http://localhost:4200/api'
-
-# Verify configuration
-prefect config view
-
-# Start Prefect server
-prefect server start
-
-# Run deployment
-python src/modelling/deployment.py
 ```
 
-Visit http://0.0.0.0:4200/deployments for deployment interface
+### Steps to Follow
 
-### 3. Docker Commands
+1. **Run the Correct Command:** Use the command above to set the `PREFECT_API_URL`.
 
-```bash
-# Build image
-docker build -t api-with-prefect -f Dockerfile.app .
+2. **Verify the Configuration:** After setting it, verify that the change took effect by running:
 
-# Run container
-docker run -p 8000:8000 -p 4200:4200 api-with-prefect
+    ```bash
+    prefect config view
+    ```
+
+   It should display:
+
+    ```plaintext
+    PREFECT_API_URL='http://localhost:4200/api'
+    ```
+
+3. **Start the Prefect Server:** If you haven’t already, start the Prefect server in a separate terminal:
+
+    ```bash
+    prefect server start
+    ```
+
+4. **Run Your Deployment Script:** Now that you’ve set the API URL correctly, run your `deployment.py` script:
+
+    ```bash
+    python \src\modelling\deployment.py
+    ```
 ```
 
-## Development Process
 
-1. Fork repository (keep all branches)
-2. Add team members as admins
-3. Follow numbered branches
-4. Read PR_i.md in each branch
-5. Make commits
-6. Create single PR per branch
-7. Merge to main
+When you navigate to http://0.0.0.0:4200/deployments, click on 'train-model' to view the scheduled retraining of the model, as shown below:
 
-### Tips
-- Use virtual environment
-- Install pre-commit hooks
-- Maintain clean requirements
-- Remove unused code/TODOs
-
-## MLflow Visualization
-
-You can see model experiments in MLflow:
-![image3](images/image3.png)
-
-Best model from last run (LR):
-![image4](images/image4.png)
-
-## Prefect Interface
-
-Scheduled retraining view:
 ![image1](images/image1.png)
 
-Quick run interface:
+
+"Click on 'Quick Run' to train the model immediately, then scroll to the bottom of the page and select the most recent run:"
 ![image2](images/image2.png)
+
+
+
+We used this command to clean the requirements.in
+    ```bash
+    pipreqs . --savepath requirements.in
+    ```
+
+
+This builds a Docker image from the Dockerfile.app, tagging it as api-with-prefect.
+
+  ```bash
+  docker build -t api-with-prefect -f Dockerfile.app .
+  ```
+
+This runs a container from the api-with-prefect image, exposing ports 8000 and 4200 for external access to the app and Prefect UI.
+
+  ```bash
+  docker run -p 8000:8000 -p 4200:4200 api-with-prefect
+  ```
