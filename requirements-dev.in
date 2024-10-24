@@ -1,2 +1,6 @@
-# TODO - complete with dev requirements (black, flake8, ruff, etc...)
-# Then, execute "pip-compile requirements-dev.in" to generate the file requirements-dev.txt
+# Development requirements
+flake8
+flake8-docstrings
+isort
+black[jupyter]
+pre-commit
