@@ -31,6 +31,14 @@ jobs:
       - name: Install pre-commit hooks
         run: pre-commit install
 
-      # Step to run code quality checks
+      # Step to run code quality checks (linter + formatter)
       - name: Run code quality checks
         run: pre-commit run --all-files
+
+      # Step to run additional linters (e.g., flake8)
+      - name: Run Flake8 linter
+        run: flake8 .
+
+      # Step to run code formatting (e.g., black)
+      - name: Run Black formatter
+        run: black --check .
