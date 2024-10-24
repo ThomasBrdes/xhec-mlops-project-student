@@ -26,7 +26,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
-      
+
       # Step to install pre-commit 
       - name: Install pre-commit hooks
         run: pre-commit install
