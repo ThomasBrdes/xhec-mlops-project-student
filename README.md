@@ -206,3 +206,23 @@ When you navigate to http://0.0.0.0:4200/deployments, click on 'train-model' to 
 
 "Click on 'Quick Run' to train the model immediately, then scroll to the bottom of the page and select the most recent run:"
 ![image2](images/image2.png)
+
+
+
+We used this command to clean the requirements.in
+    ```bash
+    pipreqs . --savepath requirements.in
+    ```
+
+
+This builds a Docker image from the Dockerfile.app, tagging it as api-with-prefect.
+
+  ```bash
+  docker build -t api-with-prefect -f Dockerfile.app .
+  ```
+
+This runs a container from the api-with-prefect image, exposing ports 8000 and 4200 for external access to the app and Prefect UI.
+
+  ```bash
+  docker run -p 8000:8000 -p 4200:4200 api-with-prefect
+  ```
