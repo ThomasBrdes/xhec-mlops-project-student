@@ -19,11 +19,11 @@ def main():
     df = pd.read_csv("../../data/abalone.csv")
 
     # Preprocess the data
-    X_train, X_test, y_train, y_test = preprocess_data(df)
+    x_train, x_test, y_train, y_test = preprocess_data(df)
 
     # Train models and get the best model
     best_model, best_model_name, best_rmse = train_models(
-        X_train, y_train, X_test, y_test
+        x_train, y_train, x_test, y_test
     )
 
     save_model(
@@ -32,7 +32,7 @@ def main():
     )
 
     # Make predictions (optional)
-    predictions = make_predictions(best_model, X_test)
+    predictions = make_predictions(best_model, x_test)
     print(predictions)  # Use predictions to avoid F841
 
 
