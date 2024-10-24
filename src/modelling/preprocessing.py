@@ -1,9 +1,4 @@
-"""
-This module provides functions for preprocessing a dataset used for
-predicting the number of 'Rings'. The preprocessing steps include
-one-hot encoding, outlier removal, feature scaling, and feature
-selection.
-"""
+"""Module for preprocessing the rings prediction dataset."""
 
 import pandas as pd
 from sklearn.feature_selection import SelectKBest
@@ -12,16 +7,17 @@ from sklearn.preprocessing import StandardScaler
 
 
 def preprocess_data(df):
-    """
-    Preprocess the input DataFrame by performing one-hot encoding,
-    outlier removal, feature scaling, and feature selection.
+    """Preprocess the input DataFrame for model training.
+
+    Performs one-hot encoding, outlier removal, feature scaling, and feature
+    selection on the input data to prepare it for model training.
 
     Args:
         df (pd.DataFrame): The input DataFrame containing features and target.
 
     Returns:
         tuple: A tuple containing the training and testing sets for
-        features (x_train, x_test) and target (y_train, y_test).
+            features (x_train, x_test) and target (y_train, y_test).
     """
     # Perform one-hot encoding
     data = pd.get_dummies(df)
@@ -31,12 +27,12 @@ def preprocess_data(df):
     outlier_conditions(data)
 
     # Define features and target
-    X = data.drop("Rings", axis=1)
+    x = data.drop("Rings", axis=1)
     y = data["Rings"]
 
     # Scaling
     standard_scale = StandardScaler()
-    x_scaled = standard_scale.fit_transform(X)
+    x_scaled = standard_scale.fit_transform(x)
 
     # Feature selection
     select_k_best = SelectKBest()
@@ -51,14 +47,14 @@ def preprocess_data(df):
 
 
 def outlier_conditions(data):
-    """
-    Remove outliers from the DataFrame based on specific conditions
-    related to 'Viscera weight', 'Shell weight', 'Shucked weight',
-    'Diameter', and 'Height'.
+    """Remove outliers from the dataset based on specific conditions.
+
+    Removes outliers based on relationships between 'Viscera weight',
+    'Shell weight', 'Shucked weight', 'Diameter', 'Height' and 'Rings'.
 
     Args:
         data (pd.DataFrame): The input DataFrame from which outliers
-        will be removed.
+            will be removed.
 
     Returns:
         pd.DataFrame: The cleaned DataFrame with outliers removed.
