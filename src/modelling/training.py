@@ -5,11 +5,8 @@ RMSE and log their performance with MLflow.
 
 import mlflow
 import numpy as np
-from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
 from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.metrics import mean_squared_error
-from sklearn.neighbors import KNeighborsRegressor
-from sklearn.svm import SVR
 
 
 def rmse_test(
@@ -71,14 +68,7 @@ def train_models(
         tuple: A tuple containing the best model, the name of the best model,
                and the best RMSE value.
     """
-    models = [
-        LinearRegression(),
-        Ridge(),
-        SVR(),
-        RandomForestRegressor(),
-        GradientBoostingRegressor(),
-        KNeighborsRegressor(n_neighbors=4),
-    ]
+    models = [LinearRegression(), Ridge()]
 
     names = [
         "LR",
