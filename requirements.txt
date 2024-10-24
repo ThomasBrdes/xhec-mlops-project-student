@@ -594,7 +594,7 @@ pytzdata==2020.1
     # via
     #   -r requirements.in
     #   pendulum
-pywin32==306
+pywin32==305
     # via
     #   -r requirements.in
     #   docker
