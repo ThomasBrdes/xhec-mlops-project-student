@@ -12,18 +12,13 @@ repos:
     hooks:
       - id: black
         name: Formatting (black)
-        entry: black
+        entry: black --line-length 79
         language: python
         types_or: [python, pyi, jupyter]
         additional_dependencies: [".[jupyter]"]
       - id: isort
         name: Sorting imports (isort)
         entry: isort
-        types: [python]
-        language: system
-      - id: ruff # TODO - remove this if you chose not to use ruff (must have one of ruff or flake8)
-        name: Linting (ruff)
-        entry: ruff
         types: [python]
         language: system
       - id: flake8 # TODO - remove this if you chose not to use flake8 (must have one of ruff or flake8)

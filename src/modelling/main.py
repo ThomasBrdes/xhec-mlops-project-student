@@ -1,23 +1,34 @@
-# This module is the training flow: it reads the data, preprocesses it, trains a model and saves it.
+"""Main module for training the predictive model.
 
-import argparse
+This module loads the dataset, preprocesses the data, trains the model,
+and optionally makes predictions.
+"""
+
+import pandas as pd
+from predicting import make_predictions
+from preprocessing import preprocess_data
+from training import train_models
 
 
-def main(trainset_path: Path) -> None:
-    """Train a model using the data at the given path and save the model (pickle)."""
-    # Read data
+def main():
+    """Train a model using the data at the given path
+    and save the model (pickle)."""
+    # Load your data
+    # Update with your actual data file path
+    df = pd.read_csv("your_dataset.csv")
 
-    # Preprocess data
+    # Preprocess the data
+    X_train, X_test, y_train, y_test = preprocess_data(df)
 
-    # (Optional) Pickle encoder if need be
+    # Train models and get the best model
+    best_model, best_model_name, best_rmse = train_models(
+        X_train, y_train, X_test, y_test
+    )
 
-    # Train model
-
-    # Pickle model --> The model should be saved in pkl format the `src/web_service/local_objects` folder
+    # Make predictions (optional)
+    predictions = make_predictions(best_model, X_test)
+    print(predictions)  # Use predictions to avoid F841
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Train a model using the data at the given path.")
-    parser.add_argument("trainset_path", type=str, help="Path to the training set")
-    args = parser.parse_args()
-    main(args.trainset_path)
+    main()
