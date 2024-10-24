@@ -1,0 +1,6 @@
+# Development requirements
+flake8
+flake8-docstrings
+isort
+black[jupyter]
+pre-commit
