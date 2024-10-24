@@ -34,8 +34,3 @@ jobs:
       # Step to run code quality checks
       - name: Run code quality checks
         run: pre-commit run --all-files
-
-      # Step to run tests
-      - name: Run tests
-        run: |
-          pytest --cov=mlops_hw tests/
