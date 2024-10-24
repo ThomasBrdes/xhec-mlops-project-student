@@ -33,6 +33,10 @@ You can download the dataset on the [Kaggle page](https://www.kaggle.com/dataset
   - [Steps to reproduce to build the deliverable](#steps-to-reproduce-to-build-the-deliverable)
     - [Pull requests in this project](#pull-requests-in-this-project)
     - [Tips to work on this project](#tips-to-work-on-this-project)
+- [Instructions](#instructions)
+  - [Environment Setup](#environment-setup)
+    - [Using Conda](#using-conda)
+    - [Using Poetry](#using-poetry)
 
 ## Deliverables and notation
 
@@ -105,8 +109,9 @@ You can follow the order of the branches to build your project and collaborate.
    > # At this point, you might have a VIM window opening, you can close it using the command ":wq"
    > git push
    > ```
+    - Read and **follow** all the instructions in the the PR instructions file
     - Do as many commits as necessary on the branch_number_i to perform the task indicated in the corresponding markdown file
-    - Open a pull request from this branch to the main branch of your forked repository
+    - Open **A SINGLE** pull request from this branch to the main branch of your forked repository
     - Once done, merge the pull request in the main branch of your forked repository
 
 ### Pull requests in this project
@@ -141,3 +146,53 @@ This will guarantee that your code is formatted correctly and of good quality be
 ```bash
 pip-compile requirements.in
 ```
+
+
+# Instructions
+
+## Environment Setup
+
+This project can be set up using either Conda or Poetry, depending on your preference. Follow the instructions below to create the development environment and install necessary dependencies.
+
+### Using Conda
+
+   You can create the environment from the `environment.yml` file:
+   ```bash
+   conda env create -f environment.yml
+   conda activate mlops_hw
+   ```
+
+   Then, you can download the dependencies from the `requirements.txt` file:
+   ```bash
+   pip install -r requirements.in
+   pip install -r requirements-dev.in
+   ```
+
+   If you want to work on your repo and use pre-commit:
+   ```bash
+   pip install pre-commit
+   pre-commit install
+   ```
+
+   In order to check manually if the pre-commit is respected:
+   ```bash
+   pre-commit run --all-files
+   ```
+
+
+### Using Poetry
+
+  You can create the environment from the `environment.yml` file:
+   ```bash
+   poetry install
+   ```
+
+   If you want to work on your repo and use pre-commit, Poetry will automatically install the pre-commit package. Now, install the hooks:
+   ```bash
+   pre-commit install
+   ```
+
+   In order to check manually if the pre-commit is respected:
+   ```bash
+   poetry run pre-commit run --all-files
+   ```
