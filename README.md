@@ -174,6 +174,11 @@ This project can be set up using either Conda or Poetry, depending on your prefe
    pre-commit install
    ```
 
+   In order to check manually if the pre-commit is respected:
+   ```bash
+   pre-commit run --all-files
+   ```
+
 
 ### Using Poetry
 
@@ -186,3 +191,11 @@ This project can be set up using either Conda or Poetry, depending on your prefe
    ```bash
    pre-commit install
    ```
+<<<<<<< Updated upstream
+=======
+
+   In order to check manually if the pre-commit is respected:
+   ```bash
+   poetry run pre-commit run --all-files
+   ```
+>>>>>>> Stashed changes
