@@ -34,6 +34,10 @@ You can download the dataset on the [Kaggle page](https://www.kaggle.com/dataset
   - [Steps to reproduce to build the deliverable](#steps-to-reproduce-to-build-the-deliverable)
     - [Pull requests in this project](#pull-requests-in-this-project)
     - [Tips to work on this project](#tips-to-work-on-this-project)
+- [Instructions](#instructions)
+  - [Environment Setup](#environment-setup)
+    - [Using Conda](#using-conda)
+    - [Using Poetry](#using-poetry)
 
 ## Deliverables and notation
 
@@ -142,3 +146,44 @@ This will guarantee that your code is formatted correctly and of good quality be
 ```bash
 pip-compile requirements.in
 ```
+
+
+# Instructions
+
+## Environment Setup
+
+This project can be set up using either Conda or Poetry, depending on your preference. Follow the instructions below to create the development environment and install necessary dependencies.
+
+### Using Conda
+
+   You can create the environment from the `environment.yml` file:
+   ```bash
+   conda env create -f environment.yml
+   conda activate mlops_hw
+   ```
+
+   Then, you can download the dependencies from the `requirements.txt` file:
+   ```bash
+   pip install -r requirements.in
+   pip install -r requirements-dev.in
+   ```
+
+   If you want to work on your repo and use pre-commit:
+   ```bash
+   pip install pre-commit
+   pre-commit install
+   ```
+
+
+### Using Poetry
+
+  You can create the environment from the `environment.yml` file:
+   ```bash
+   poetry install
+   ```
+
+   If you want to work on your repo and use pre-commit, Poetry will automatically install the pre-commit package. Now, install the hooks:
+   ```bash
+   pre-commit install
+   ```
+
