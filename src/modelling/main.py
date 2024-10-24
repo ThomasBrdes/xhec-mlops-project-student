@@ -1,8 +1,4 @@
-"""Main module for training the predictive model.
-
-This module loads the dataset, preprocesses the data, trains the model,
-and optionally makes predictions.
-"""
+"""Main module for training the predictive model."""
 
 import pandas as pd
 from predicting import make_predictions
@@ -12,8 +8,12 @@ from utils import save_model
 
 
 def main():
-    """Train a model using the data at the given path
-    and save the model (pickle)."""
+    """Train a model using the data and save the model (pickle).
+
+    This function loads the dataset, preprocesses it, trains multiple models,
+    selects the best performing one, and saves it to disk. Optionally makes
+    predictions using the trained model.
+    """
     # Load your data
     # Update with your actual data file path
     df = pd.read_csv("../../data/abalone.csv")
