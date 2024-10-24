@@ -6,7 +6,7 @@ from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.metrics import mean_squared_error
 
 
-def rmse_test(model, X_train, y_train, X_test, y_test):
+def rmse_test(model, x_train, y_train, x_test, y_test):
     """Calculate RMSE for a model on test data after training.
 
     Train the given model on the training data and evaluate it using RMSE on
@@ -14,30 +14,30 @@ def rmse_test(model, X_train, y_train, X_test, y_test):
 
     Args:
         model: A regression model that supports the fit and predict methods.
-        X_train (array-like): Training feature set.
+        x_train (array-like): Training feature set.
         y_train (array-like): Training target values.
-        X_test (array-like): Test feature set.
+        x_test (array-like): Test feature set.
         y_test (array-like): True target values for the test set.
 
     Returns:
         float: The RMSE of the model predictions on the test set scaled by 100.
     """
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
+    model.fit(x_train, y_train)
+    y_pred = model.predict(x_test)
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
     return rmse * 100
 
 
-def train_models(X_train, y_train, X_test, y_test):
+def train_models(x_train, y_train, x_test, y_test):
     """Train and evaluate multiple regression models using MLflow tracking.
 
     This function evaluates several regression models, logs their RMSE metrics,
     and tracks the best performing model based on the RMSE.
 
     Args:
-        X_train (array-like): Training feature set.
+        x_train (array-like): Training feature set.
         y_train (array-like): Training target values.
-        X_test (array-like): Test feature set.
+        x_test (array-like): Test feature set.
         y_test (array-like): True target values for the test set.
 
     Returns:
@@ -54,7 +54,7 @@ def train_models(X_train, y_train, X_test, y_test):
 
     for model, name in zip(models, names):
         with mlflow.start_run(run_name=name):
-            test_rmse = rmse_test(model, X_train, y_train, X_test, y_test)
+            test_rmse = rmse_test(model, x_train, y_train, x_test, y_test)
             print(f"{name}    : RMSE on Test Set = {test_rmse:.6f}")
 
             # Log model and metrics

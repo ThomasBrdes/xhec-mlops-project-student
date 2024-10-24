@@ -21,7 +21,7 @@ def preprocess_data(df):
 
     Returns:
         tuple: A tuple containing the training and testing sets for
-        features (X_train, X_test) and target (y_train, y_test).
+        features (x_train, x_test) and target (y_train, y_test).
     """
     # Perform one-hot encoding
     data = pd.get_dummies(df)
@@ -36,18 +36,18 @@ def preprocess_data(df):
 
     # Scaling
     standard_scale = StandardScaler()
-    X_scaled = standard_scale.fit_transform(X)
+    x_scaled = standard_scale.fit_transform(X)
 
     # Feature selection
     select_k_best = SelectKBest()
-    X_new = select_k_best.fit_transform(X_scaled, y)
+    x_new = select_k_best.fit_transform(x_scaled, y)
 
     # Split the dataset
-    X_train, X_test, y_train, y_test = train_test_split(
-        X_new, y, test_size=0.25
+    x_train, x_test, y_train, y_test = train_test_split(
+        x_new, y, test_size=0.25
     )
 
-    return X_train, X_test, y_train, y_test
+    return x_train, x_test, y_train, y_test
 
 
 def outlier_conditions(data):
