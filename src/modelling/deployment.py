@@ -1,3 +1,5 @@
+"""Deploys a Prefect workflow for periodic model training and evaluation."""
+
 from main import main
 from prefect import serve
 
