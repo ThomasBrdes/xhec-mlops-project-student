@@ -36,12 +36,10 @@ def preprocess_data(df):
 
     # Feature selection
     select_k_best = SelectKBest()
-    x_new = select_k_best.fit_transform(x_scaled, y)
+    xn = select_k_best.fit_transform(x_scaled, y)
 
     # Split the dataset
-    x_train, x_test, y_train, y_test = train_test_split(
-        x_new, y, test_size=0.25
-    )
+    x_train, x_test, y_train, y_test = train_test_split(xn, y, test_size=0.25)
 
     return x_train, x_test, y_train, y_test
 
@@ -101,14 +99,6 @@ def outlier_conditions(data):
     data.drop(
         data[(data["Diameter"] >= 0.6) & (data["Rings"] < 25)].index,
         inplace=True,
-    )
-
-    # Outlier removal based on the 'Height'
-    data.drop(
-        data[(data["Height"] > 0.4) & (data["Rings"] < 15)].index, inplace=True
-    )
-    data.drop(
-        data[(data["Height"] < 0.4) & (data["Rings"] > 25)].index, inplace=True
     )
 
     return data
