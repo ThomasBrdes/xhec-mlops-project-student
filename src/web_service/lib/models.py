@@ -1,7 +1,4 @@
-"""
-Defines Pydantic models for validating input features and structuring
-the output for the prediction API.
-"""
+"""Pydantic models for validating input and structuring output."""
 
 from pydantic import BaseModel
 

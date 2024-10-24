@@ -1,4 +1,4 @@
-"""Make Predictions"""
+"""Make Predictions."""
 
 
 def make_prediction(model, data):
