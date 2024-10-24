@@ -13,7 +13,7 @@ repos:
     hooks:
       - id: black
         name: Formatting (black)
-        entry: black
+        entry: black --line-length 79
         language: python
         types_or: [python, pyi, jupyter]
         additional_dependencies: [".[jupyter]"]
@@ -30,4 +30,4 @@ repos:
         types: [python]
         language: python  # Use 'python' to ensure it runs in the virtual environment
 
-exclude: ^(.svn|CVS|.bzr|.hg|.git|__pycache__|.tox|.ipynb_checkpoints|assets|tests/assets/|venv/|.venv/)
+exclude: ^(.svn|CVS|.bzr|.hg|.git|_pycache_|.tox|.ipynb_checkpoints|assets|tests/assets/|venv/|.venv/)
