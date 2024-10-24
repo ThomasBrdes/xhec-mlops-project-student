@@ -596,7 +596,6 @@ pytzdata==2020.1
     #   pendulum
 pywin32==305
     # via
-    #   -r requirements.in
     #   docker
     #   jupyter-core
 pywin32-ctypes==0.2.3
