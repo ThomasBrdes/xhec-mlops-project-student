@@ -594,12 +594,12 @@ pytzdata==2020.1
     # via
     #   -r requirements.in
     #   pendulum
-pywin32==305
-    # via
-    #   docker
-    #   jupyter-core
-pywin32-ctypes==0.2.3
-    # via keyring
+# pywin32==305
+#     # via
+#     #   docker
+#     #   jupyter-core
+# pywin32-ctypes==0.2.3
+#     # via keyring
 pyyaml==6.0.2
     # via
     #   -r requirements.in
