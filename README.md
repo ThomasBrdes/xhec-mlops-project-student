@@ -196,8 +196,6 @@ prefect config set PREFECT_API_URL='http://localhost:4200/api'
     ```bash
     python \src\modelling\deployment.py
     ```
-```
-
 
 When you navigate to http://0.0.0.0:4200/deployments, click on 'train-model' to view the scheduled retraining of the model, as shown below:
 
