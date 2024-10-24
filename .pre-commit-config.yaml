@@ -24,12 +24,6 @@ repos:
         types: [python]
         language: python  # Use 'python' to ensure it runs in the virtual environment
 
-      - id: ruff  # TODO - remove this if you chose not to use ruff (must have one of ruff or flake8)
-        name: Linting (ruff)
-        entry: ruff
-        types: [python]
-        language: python  # Use 'python' to ensure it runs in the virtual environment
-
       - id: flake8  # TODO - remove this if you chose not to use flake8 (must have one of ruff or flake8)
         name: Linting (flake8)
         entry: flake8
