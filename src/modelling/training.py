@@ -1,3 +1,8 @@
+"""
+This module contains functions to train and evaluate regression models using
+RMSE and log their performance with MLflow.
+"""
+
 import mlflow
 import numpy as np
 from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
