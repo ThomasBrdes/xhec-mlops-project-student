@@ -1,21 +1,10 @@
-[build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
-
-[project]
-name = "xhec-mlops-project-student"
-authors = [
-  { name = "username", email = "user@email.com" },
-] # TODO: add authors here
-description = "This repository contains the solution for the X-HEC MLOps Project on the industrialization of Abalone age prediction model."
-version = "0.0.1"
-readme = "README.md"
-requires-python = ">3.10" # TODO: update this version
-
-[project.urls]
-"Homepage" = "https://github.com/artefactory/xhec-mlops-project-student" # TODO: update this URL
-
-[tool.setuptools]
-packages = ["src"]
-
-# TODO: add black, isort, and ruff (optional - not needed if using flake8) configurations here
+name: mlops_hw
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip=23.2.1
+  - pip-tools=7.3.0
+  - pip:
+    - -r requirements.txt
